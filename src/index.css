@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Smart Energy Management Dashboard Design System - Dark Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Energy Theme */
+    --background: 220 15% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 15% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 15% 8%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Energy-inspired primary colors */
+    --primary: 200 85% 55%;
+    --primary-foreground: 220 15% 6%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 10%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 160 60% 45%;
+    --accent-foreground: 220 15% 6%;
 
-    --destructive: 0 84.2% 60.2%;
+    /* Alert colors for energy management */
+    --destructive: 0 75% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 45 90% 60%;
+    --warning-foreground: 220 15% 6%;
 
-    --radius: 0.5rem;
+    --success: 120 60% 50%;
+    --success-foreground: 220 15% 6%;
+
+    --border: 220 15% 15%;
+    --input: 220 15% 12%;
+    --ring: 200 85% 55%;
+
+    --radius: 0.75rem;
+
+    /* Energy source colors */
+    --solar: 45 95% 65%;
+    --wind: 200 80% 60%;
+    --battery: 280 60% 60%;
+    --grid: 0 0% 60%;
+
+    /* Gradients for energy flow */
+    --gradient-energy: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    --gradient-solar: linear-gradient(135deg, hsl(var(--solar)) 0%, hsl(45 80% 55%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(220 15% 10%) 100%);
+    
+    /* Glow effects */
+    --glow-primary: 0 0 20px hsl(var(--primary) / 0.3);
+    --glow-success: 0 0 20px hsl(var(--success) / 0.3);
+    --glow-warning: 0 0 20px hsl(var(--warning) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-energy: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +129,49 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Energy Dashboard Components */
+  .energy-card {
+    @apply bg-gradient-to-br from-card to-secondary border border-border/50 rounded-lg backdrop-blur-sm;
+    box-shadow: var(--glow-primary);
+  }
+
+  .energy-glow {
+    filter: drop-shadow(var(--glow-primary));
+  }
+
+  .pulse-energy {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  .data-flow {
+    animation: data-stream 3s linear infinite;
+  }
+}
+
+@keyframes pulse-glow {
+  from {
+    filter: drop-shadow(0 0 5px hsl(var(--primary) / 0.2));
+  }
+  to {
+    filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.6));
+  }
+}
+
+@keyframes data-stream {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
