@@ -3,9 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-
-  "homepage": "https://Sumit-sangave.github.io/cmg-app",
-
+  "homepage": "https://Sumit-sangave.github.io/future-grid-nexus",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
