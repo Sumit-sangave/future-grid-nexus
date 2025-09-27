@@ -15,4 +15,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: "/cmg-app/",   // 👈 IMPORTANT: repo name for GitHub Pages
+
 }));
