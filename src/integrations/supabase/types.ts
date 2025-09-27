@@ -14,9 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
+      campus_metrics: {
+        Row: {
+          battery_charge_percent: number
+          battery_health_percent: number
+          battery_runtime_hours: number
+          co2_saved_kg: number
+          cost_savings_usd: number
+          created_at: string
+          forecast_demand_kwh: number
+          forecast_generation_kwh: number
+          id: string
+          total_consumed_kwh: number
+          total_generated_kwh: number
+          updated_at: string
+        }
+        Insert: {
+          battery_charge_percent?: number
+          battery_health_percent?: number
+          battery_runtime_hours?: number
+          co2_saved_kg?: number
+          cost_savings_usd?: number
+          created_at?: string
+          forecast_demand_kwh?: number
+          forecast_generation_kwh?: number
+          id?: string
+          total_consumed_kwh?: number
+          total_generated_kwh?: number
+          updated_at?: string
+        }
+        Update: {
+          battery_charge_percent?: number
+          battery_health_percent?: number
+          battery_runtime_hours?: number
+          co2_saved_kg?: number
+          cost_savings_usd?: number
+          created_at?: string
+          forecast_demand_kwh?: number
+          forecast_generation_kwh?: number
+          id?: string
+          total_consumed_kwh?: number
+          total_generated_kwh?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          id: string
+          message: string
+          response: string | null
+          session_id: string
+          timestamp: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          message: string
+          response?: string | null
+          session_id: string
+          timestamp?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          message?: string
+          response?: string | null
+          session_id?: string
+          timestamp?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
+          address: string | null
+          contact_number: string | null
           created_at: string
+          department: string | null
           email: string
           full_name: string
           id: string
@@ -25,7 +100,10 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          address?: string | null
+          contact_number?: string | null
           created_at?: string
+          department?: string | null
           email: string
           full_name: string
           id?: string
@@ -34,7 +112,10 @@ export type Database = {
           user_id: string
         }
         Update: {
+          address?: string | null
+          contact_number?: string | null
           created_at?: string
+          department?: string | null
           email?: string
           full_name?: string
           id?: string
