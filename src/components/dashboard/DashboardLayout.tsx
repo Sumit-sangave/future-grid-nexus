@@ -1,42 +1,37 @@
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { EnergyOverview } from "./EnergyOverview";
-import { EnergyCharts } from "./EnergyCharts";
+import { EnhancedEnergyOverview } from "./EnhancedEnergyOverview";
 import { AlertSystem } from "./AlertSystem";
 import { ChatBot } from "./ChatBot";
-import { EnergySharing } from "./EnergySharing";
+import { EnhancedEnergySharing } from "./EnhancedEnergySharing";
 import { Analytics } from "./Analytics";
+import { AIAssistance } from "./AIAssistance";
+import { ProfileDialog } from "./ProfileDialog";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Menu, X, LogOut } from "lucide-react";
 
 export const DashboardLayout = () => {
+  const { signOut, profile } = useAuth();
   const [activeView, setActiveView] = useState("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const renderContent = () => {
     switch (activeView) {
       case "overview":
-        return (
-          <div className="space-y-6">
-            <EnergyOverview />
-            <EnergyCharts />
-          </div>
-        );
+        return <EnhancedEnergyOverview />;
       case "alerts":
         return <AlertSystem />;
       case "chatbot":
         return <ChatBot />;
       case "sharing":
-        return <EnergySharing />;
+        return <EnhancedEnergySharing />;
       case "analytics":
         return <Analytics />;
+      case "ai-insights":
+        return <AIAssistance />;
       default:
-        return (
-          <div className="space-y-6">
-            <EnergyOverview />
-            <EnergyCharts />
-          </div>
-        );
+        return <EnhancedEnergyOverview />;
     }
   };
 
@@ -65,13 +60,21 @@ export const DashboardLayout = () => {
       {/* Main content */}
       <div className="lg:ml-64">
         <div className="p-6 lg:p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Smart Energy Management
-            </h1>
-            <p className="text-muted-foreground mt-2">
-              Government Campus Energy Dashboard
-            </p>
+          <div className="mb-8 flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Smart Energy Management
+              </h1>
+              <p className="text-muted-foreground mt-2">
+                Government Campus Energy Dashboard • {profile?.role === 'admin' ? 'Administrator' : 'Technician'} View
+              </p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <ProfileDialog />
+              <Button variant="ghost" size="icon" onClick={signOut}>
+                <LogOut className="w-5 h-5" />
+              </Button>
+            </div>
           </div>
           
           {renderContent()}
